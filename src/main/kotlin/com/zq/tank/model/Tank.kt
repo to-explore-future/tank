@@ -130,9 +130,9 @@ class Tank(override var positionX: Int, override var positionY: Int) :
         }
     }
 
-    override fun notifyCollision(direction: Direction?, obstruct: Obstructive?) {
-        this.badDirection = direction
-        println("badDirection = $badDirection")
+    override fun notifyCollision(badDirection: Direction?, obstruct: Obstructive?) {
+        this.badDirection = badDirection
+        println("badDirection = ${this.badDirection}")
         lastBadDirectionUpdateTime = System.currentTimeMillis()
 
     }

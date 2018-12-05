@@ -1,14 +1,14 @@
 package com.zq.tank
 
-import com.zq.tank.interF.*
 import com.zq.tank.emum.Direction
+import com.zq.tank.interF.*
 import com.zq.tank.model.*
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
 import org.itheima.kotlin.game.core.Composer
 import org.itheima.kotlin.game.core.Window
-import java.io.File
-import java.nio.charset.Charset
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.util.concurrent.CopyOnWriteArrayList
 
 class GameWindow : Window("坦克大战", "/tanks/my_tank_up.png", Config.gameWidth, Config.gameHeight) {
@@ -21,9 +21,12 @@ class GameWindow : Window("坦克大战", "/tanks/my_tank_up.png", Config.gameWi
     override fun onCreate() {
 
         Composer.play("sound/start.wav")
-        val file = File(javaClass.getResource("/map/1.map").file)
+//        val file = File(javaClass.getResource("/map/1.map").file)
+        val resourceAsStream = javaClass.getResourceAsStream("/map/1.map")
+        val reader = BufferedReader(InputStreamReader(resourceAsStream, "utf-8"))
 
-        val readLines = file.readLines(Charset.defaultCharset())
+
+        val readLines = reader.readLines()
         var line = 0
         readLines.forEach { mapElement ->
 
